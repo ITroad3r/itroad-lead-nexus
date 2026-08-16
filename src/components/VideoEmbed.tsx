@@ -5,6 +5,8 @@ const VIDEO_ID = "X4f6frV_pNI";
 
 interface YTPlayer {
   setVolume(volume: number): void;
+  setOption(module: string, option: string, value: unknown): void;
+  unloadModule(module: string): void;
   isMuted(): boolean;
   unMute(): void;
   mute(): void;
@@ -23,6 +25,7 @@ declare global {
           events?: {
             onReady?: (event: { target: YTPlayer }) => void;
             onStateChange?: (event: { data: number }) => void;
+            onApiChange?: (event: { target: YTPlayer }) => void;
           };
         }
       ) => YTPlayer;
@@ -75,6 +78,16 @@ export function VideoEmbed() {
 
     const loadPlayer = () => {
       if (!window.YT) return;
+
+      const disableCaptions = (player: YTPlayer) => {
+        try {
+          player.setOption("captions", "track", {});
+          player.unloadModule("captions");
+        } catch {
+          // The captions module may not have loaded yet.
+        }
+      };
+
       playerRef.current = new window.YT.Player(containerId, {
         videoId: VIDEO_ID,
         playerVars: {
@@ -90,6 +103,8 @@ export function VideoEmbed() {
         events: {
           onReady: (event) => {
             const player = event.target;
+            disableCaptions(player);
+            setTimeout(() => disableCaptions(player), 1_000);
             player.setVolume(25);
             player.playVideo();
             // Attempt to enable sound right away; browsers may refuse without a gesture.
@@ -97,6 +112,7 @@ export function VideoEmbed() {
               if (!tryUnmute()) attachGestureUnmute();
             }, 600);
           },
+          onApiChange: (event) => disableCaptions(event.target),
         },
       });
     };
