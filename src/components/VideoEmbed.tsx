@@ -48,6 +48,8 @@ export function VideoEmbed() {
           rel: 0,
           loop: 1,
           playlist: VIDEO_ID,
+          cc_load_policy: 0,
+          iv_load_policy: 3,
         },
         events: {
           onReady: (event) => {
