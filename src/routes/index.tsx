@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Download, Phone, PlayCircle } from "lucide-react";
+import { ArrowRight, BadgeCheck, Download, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LeadForm } from "@/components/LeadForm";
 import { WhatsAppButton, whatsappHref } from "@/components/WhatsAppButton";
 import { ClientReferences } from "@/components/ClientReferences";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import logoAsset from "@/assets/itroad-logo.jpg.asset.json";
 import pdfAsset from "@/assets/offre-nearshore.pdf.asset.json";
 
