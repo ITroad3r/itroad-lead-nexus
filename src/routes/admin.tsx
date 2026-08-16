@@ -144,8 +144,7 @@ function AdminPage() {
         { width: 60 },
       ],
       sheet: "Leads",
-      fileName: `leads-itroad-${suffix}.xlsx`,
-    });
+    }).toFile(`leads-itroad-${suffix}.xlsx`);
   }
 
 
