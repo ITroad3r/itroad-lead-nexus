@@ -55,7 +55,7 @@ export function ClientReferences() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
           {logos.map((logo) => (
             <div
               key={logo.alt}
