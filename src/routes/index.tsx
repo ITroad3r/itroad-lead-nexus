@@ -100,9 +100,10 @@ function LandingPage() {
                 Brochure PDF
               </a>
             </Button>
-            <Button variant="brand" size="sm" asChild>
-              <a href="#contact" className="whitespace-nowrap text-xs sm:text-sm">
-                Réserver une consultation gratuite
+            <Button variant="brand" size="sm" className="max-w-[52vw] sm:max-w-none" asChild>
+              <a href="#contact" className="text-xs leading-tight sm:text-sm">
+                <span className="sm:hidden">Consultation gratuite</span>
+                <span className="hidden sm:inline">Réserver une consultation gratuite</span>
               </a>
             </Button>
           </div>
