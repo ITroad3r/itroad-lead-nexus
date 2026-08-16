@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Download, Phone, PlayCircle } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import { LeadForm } from "@/components/LeadForm";
 import { WhatsAppButton, whatsappHref } from "@/components/WhatsAppButton";
+import { ClientReferences } from "@/components/ClientReferences";
 import logoAsset from "@/assets/itroad-logo.jpg.asset.json";
 import pdfAsset from "@/assets/offre-nearshore.pdf.asset.json";
 
@@ -175,6 +176,10 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      <ClientReferences />
+
+
 
       {/* Final Form CTA */}
       <section id="contact" className="surface-navy py-14 sm:py-20">
