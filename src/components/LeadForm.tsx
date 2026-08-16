@@ -96,7 +96,7 @@ export function LeadForm({ variant = "light" }: { variant?: "light" | "dark" }) 
           : "border-border bg-card"
       }`}
     >
-      <h3 className="text-xl font-semibold sm:text-2xl">Réserver une consultation gratuite</h3>
+      <h2 className="text-xl font-semibold sm:text-2xl">Réserver une consultation gratuite</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         Remplissez vos coordonnées. Un consultant vous contactera gratuitement.
       </p>
