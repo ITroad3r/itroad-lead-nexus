@@ -134,7 +134,7 @@ function AdminPage() {
         : new Date().toISOString().slice(0, 10);
 
     await writeXlsxFile(data as never, {
-      columns: [
+      columns: ([
         { width: 16 },
         { width: 12 },
         { width: 24 },
@@ -142,7 +142,7 @@ function AdminPage() {
         { width: 30 },
         { width: 18 },
         { width: 60 },
-      ],
+      ] as never),
       sheet: "Leads",
       fileName: `leads-itroad-${suffix}.xlsx`,
     });
