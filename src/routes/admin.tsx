@@ -142,7 +142,7 @@ function AdminPage() {
         { width: 30 },
         { width: 18 },
         { width: 60 },
-      ]),
+      ],
       sheet: "Leads",
       fileName: `leads-itroad-${suffix}.xlsx`,
     });
