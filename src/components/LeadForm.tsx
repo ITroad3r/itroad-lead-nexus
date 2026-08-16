@@ -202,6 +202,7 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
+        className="h-11 md:h-10"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}

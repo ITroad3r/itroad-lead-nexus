@@ -190,7 +190,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <footer className="surface-navy border-t border-white/10 py-10">
+      <footer className="surface-navy border-t border-white/10 py-10 pb-24 sm:pb-10">
         <div className="section-shell flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
           <Logo className="h-10" />
           <p className="text-sm text-white/70">
