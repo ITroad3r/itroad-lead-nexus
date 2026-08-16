@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PlayCircle } from "lucide-react";
+import { Play } from "lucide-react";
 
 const VIDEO_ID = "X4f6frV_pNI";
 const PLAYLIST = "PLvCnaSchkbbQ6XdS4m0YrJsXVnygcm_BC";
