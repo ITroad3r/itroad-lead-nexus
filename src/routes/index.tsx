@@ -6,7 +6,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { WhatsAppButton, whatsappHref } from "@/components/WhatsAppButton";
 import { ClientReferences } from "@/components/ClientReferences";
 import { VideoEmbed } from "@/components/VideoEmbed";
-import logoAsset from "@/assets/itroad-logo.jpg.asset.json";
+import logoWhite from "@/assets/itroad-logo-white.png";
 import pdfAsset from "@/assets/offre-nearshore.pdf.asset.json";
 
 export const Route = createFileRoute("/")({
