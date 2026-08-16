@@ -60,7 +60,7 @@ function LandingPage() {
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/10 surface-navy">
         <div className="section-shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-          <Logo className="h-11 sm:h-12" />
+          <Logo className="h-12 sm:h-14" />
           <div className="flex shrink-0 items-center gap-2">
             <Button variant="onNavy" size="sm" className="hidden sm:inline-flex" asChild>
               <a href={pdfAsset.url} download>
