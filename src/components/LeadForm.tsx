@@ -183,7 +183,7 @@ function Field({
   value: string;
   onChange: (v: string) => void;
   error?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>) {
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "id">) {
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>{label}</Label>
