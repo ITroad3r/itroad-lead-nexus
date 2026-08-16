@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LeadForm } from "@/components/LeadForm";
 import { WhatsAppButton, whatsappHref } from "@/components/WhatsAppButton";
 import { ClientReferences } from "@/components/ClientReferences";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import logoAsset from "@/assets/itroad-logo.jpg.asset.json";
 import pdfAsset from "@/assets/offre-nearshore.pdf.asset.json";
 
@@ -92,19 +93,7 @@ function LandingPage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-white/15 shadow-[var(--shadow-elevated)]">
-            <div className="relative aspect-video bg-navy-deep">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/X4f6frV_pNI?list=PLvCnaSchkbbQ6XdS4m0YrJsXVnygcm_BC&rel=0"
-                title="IT ROAD GROUP — Offre Nearshore Hybride"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <VideoEmbed />
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button variant="brand" size="lg" asChild>
