@@ -45,9 +45,9 @@ function Logo({ className = "h-11" }: { className?: string }) {
     <img
       src={logoAsset.url}
       alt="IT ROAD GROUP"
-      className={`${className} w-auto rounded-md bg-white p-1.5`}
-      width={200}
-      height={200}
+      className={`${className} w-auto rounded-lg bg-white p-1.5 shadow-lg ring-1 ring-white/20`}
+      width={240}
+      height={120}
     />
   );
 }
@@ -60,7 +60,7 @@ function LandingPage() {
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/10 surface-navy">
         <div className="section-shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-          <Logo className="h-8 sm:h-10" />
+          <Logo className="h-11 sm:h-12" />
           <div className="flex shrink-0 items-center gap-2">
             <Button variant="onNavy" size="sm" className="hidden sm:inline-flex" asChild>
               <a href={pdfAsset.url} download>
@@ -191,8 +191,8 @@ function LandingPage() {
       </section>
 
       <footer className="surface-navy border-t border-white/10 py-10 pb-24 sm:pb-10">
-        <div className="section-shell flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-          <Logo className="h-10" />
+        <div className="section-shell flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-between sm:text-left">
+          <Logo className="h-14" />
           <p className="text-sm text-white/70">
             IT ROAD GROUP — Votre partenaire de confiance pour l'excellence hybride.
           </p>
