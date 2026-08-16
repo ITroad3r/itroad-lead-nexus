@@ -59,9 +59,9 @@ function LandingPage() {
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/10 surface-navy">
-        <div className="section-shell flex h-16 items-center justify-between gap-4">
-          <Logo className="h-10" />
-          <div className="flex items-center gap-2">
+        <div className="section-shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          <Logo className="h-8 sm:h-10" />
+          <div className="flex shrink-0 items-center gap-2">
             <Button variant="onNavy" size="sm" className="hidden sm:inline-flex" asChild>
               <a href={pdfAsset.url} download>
                 <Download className="h-4 w-4" />
@@ -69,7 +69,9 @@ function LandingPage() {
               </a>
             </Button>
             <Button variant="brand" size="sm" asChild>
-              <a href="#contact">Être rappelé sous 24 h</a>
+              <a href="#contact" className="whitespace-nowrap text-xs sm:text-sm">
+                Être rappelé sous 24 h
+              </a>
             </Button>
           </div>
         </div>
@@ -79,11 +81,11 @@ function LandingPage() {
       <section className="surface-navy pt-10 pb-16 sm:pt-14 sm:pb-20">
         <div className="section-shell">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
-              <PlayCircle className="h-3.5 w-3.5 text-brand" />
-              Offre Nearshore Hybride Maroc – France
+            <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider sm:text-xs">
+              <PlayCircle className="h-3.5 w-3.5 shrink-0 text-brand" />
+              <span className="min-w-0">Offre Nearshore Hybride Maroc – France</span>
             </span>
-            <h1 className="mt-5 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+            <h1 className="mt-5 text-[1.75rem] font-bold leading-tight sm:text-4xl lg:text-5xl">
               Renforcez vos équipes IT en{" "}
               <span className="text-gradient-brand">4 semaines</span>, sans exploser votre budget.
             </h1>
@@ -95,17 +97,17 @@ function LandingPage() {
 
           <VideoEmbed />
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button variant="brand" size="lg" asChild>
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button variant="brand" size="lg" className="w-full sm:w-auto" asChild>
               <a href="#contact">
                 Être rappelé sous 24 h
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
-            <Button variant="onNavy" size="lg" asChild>
+            <Button variant="onNavy" size="lg" className="w-full sm:w-auto" asChild>
               <a href={pdfAsset.url} download>
                 <Download className="h-4 w-4" />
-                Télécharger la brochure PDF
+                <span className="truncate">Télécharger la brochure PDF</span>
               </a>
             </Button>
           </div>
@@ -148,14 +150,14 @@ function LandingPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               Écrivez-nous sur WhatsApp. Nous répondons rapidement et sans engagement.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Button variant="brand" size="lg" asChild>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button variant="brand" size="lg" className="w-full sm:w-auto" asChild>
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                   <Phone className="h-4 w-4" />
                   Discuter sur WhatsApp
                 </a>
               </Button>
-              <Button variant="outlineBrand" size="lg" asChild>
+              <Button variant="outlineBrand" size="lg" className="w-full sm:w-auto" asChild>
                 <a href={pdfAsset.url} download>
                   <Download className="h-4 w-4" />
                   Brochure PDF
@@ -188,7 +190,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <footer className="surface-navy border-t border-white/10 py-10">
+      <footer className="surface-navy border-t border-white/10 py-10 pb-24 sm:pb-10">
         <div className="section-shell flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
           <Logo className="h-10" />
           <p className="text-sm text-white/70">

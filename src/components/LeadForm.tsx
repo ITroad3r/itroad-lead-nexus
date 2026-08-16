@@ -90,7 +90,7 @@ export function LeadForm({ variant = "light" }: { variant?: "light" | "dark" }) 
     <form
       onSubmit={onSubmit}
       noValidate
-      className={`rounded-2xl border p-6 shadow-[var(--shadow-elevated)] sm:p-8 ${
+      className={`rounded-2xl border p-5 shadow-[var(--shadow-elevated)] sm:p-8 ${
         isDark
           ? "border-white/15 bg-white/10 backdrop-blur"
           : "border-border bg-card"
@@ -202,6 +202,7 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
+        className="h-11 md:h-10"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
