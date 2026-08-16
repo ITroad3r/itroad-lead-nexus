@@ -176,6 +176,10 @@ function LandingPage() {
         </div>
       </section>
 
+      <ClientReferences />
+
+
+
       {/* Final Form CTA */}
       <section id="contact" className="surface-navy py-14 sm:py-20">
         <div className="section-shell">
