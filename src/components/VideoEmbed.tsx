@@ -1,5 +1,6 @@
 const VIDEO_ID = "X4f6frV_pNI";
-const PLAYLIST = "PLvCnaSchkbbQ6XdS4m0YrJsXVnygcm_BC";
+// Loop a single video by passing its ID as the playlist parameter.
+const PLAYLIST = VIDEO_ID;
 
 export function VideoEmbed() {
   return (
