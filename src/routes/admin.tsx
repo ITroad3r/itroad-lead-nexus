@@ -46,6 +46,8 @@ function AdminPage() {
   const [state, setState] = useState<"loading" | "ready" | "denied">("loading");
   const [leads, setLeads] = useState<Lead[]>([]);
   const [query, setQuery] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
@@ -78,38 +80,73 @@ function AdminPage() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return leads;
-    return leads.filter((l) =>
-      [l.full_name, l.email, l.phone, l.company, l.message ?? ""]
+    const from = dateFrom ? new Date(`${dateFrom}T00:00:00`) : null;
+    const to = dateTo ? new Date(`${dateTo}T23:59:59.999`) : null;
+
+    return leads.filter((l) => {
+      const created = new Date(l.created_at);
+      if (from && created < from) return false;
+      if (to && created > to) return false;
+      if (!q) return true;
+      return [l.full_name, l.email, l.phone, l.company, l.message ?? ""]
         .join(" ")
         .toLowerCase()
-        .includes(q),
-    );
-  }, [leads, query]);
+        .includes(q);
+    });
+  }, [leads, query, dateFrom, dateTo]);
 
-  function exportCsv() {
-    const headers = ["Date", "Nom", "Société", "Email", "Téléphone", "Besoin"];
-    const escape = (v: string) => `"${v.replace(/"/g, '""')}"`;
-    const rows = filtered.map((l) =>
+  async function exportExcel() {
+    const writeXlsxFile = (await import("write-excel-file/browser")).default;
+
+    const headerStyle = {
+      fontWeight: "bold" as const,
+      backgroundColor: "#12263F",
+      color: "#FFFFFF",
+    };
+
+    const data = [
       [
-        new Date(l.created_at).toLocaleString("fr-FR"),
-        l.full_name,
-        l.company,
-        l.email,
-        l.phone,
-        l.message ?? "",
-      ]
-        .map(escape)
-        .join(";"),
-    );
-    const csv = "\uFEFF" + [headers.map(escape).join(";"), ...rows].join("\n");
-    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `leads-itroad-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+        { value: "Date de réception", ...headerStyle },
+        { value: "Heure", ...headerStyle },
+        { value: "Nom et prénom", ...headerStyle },
+        { value: "Société", ...headerStyle },
+        { value: "Email", ...headerStyle },
+        { value: "Téléphone", ...headerStyle },
+        { value: "Besoin exprimé", ...headerStyle },
+      ],
+      ...filtered.map((l) => {
+        const d = new Date(l.created_at);
+        return [
+          { type: String, value: d.toLocaleDateString("fr-FR") },
+          { type: String, value: d.toLocaleTimeString("fr-FR") },
+          { type: String, value: l.full_name },
+          { type: String, value: l.company },
+          { type: String, value: l.email },
+          { type: String, value: l.phone },
+          { type: String, value: l.message ?? "" },
+        ];
+      }),
+    ];
+
+    const suffix =
+      dateFrom || dateTo
+        ? `${dateFrom || "debut"}_${dateTo || "aujourdhui"}`
+        : new Date().toISOString().slice(0, 10);
+
+    await writeXlsxFile(data as unknown as import("write-excel-file/browser").SheetData, {
+      columns: [
+        { width: 16 },
+        { width: 12 },
+        { width: 24 },
+        { width: 24 },
+        { width: 30 },
+        { width: 18 },
+        { width: 60 },
+      ],
+      sheet: "Leads",
+    }).toFile(`leads-itroad-${suffix}.xlsx`);
   }
+
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -155,8 +192,8 @@ function AdminPage() {
             <Button variant="outline" onClick={() => void load()}>
               <RefreshCw className="h-4 w-4" /> Actualiser
             </Button>
-            <Button variant="brand" onClick={exportCsv} disabled={filtered.length === 0}>
-              <Download className="h-4 w-4" /> Exporter CSV
+            <Button variant="brand" onClick={() => void exportExcel()} disabled={filtered.length === 0}>
+              <Download className="h-4 w-4" /> Exporter Excel
             </Button>
             <Button variant="ghost" onClick={signOut}>
               <LogOut className="h-4 w-4" /> Déconnexion
@@ -164,7 +201,8 @@ function AdminPage() {
           </div>
         </header>
 
-        <div className="relative mt-6 max-w-sm">
+        <div className="mt-6 flex flex-wrap items-end gap-3">
+          <div className="relative max-w-sm flex-1 min-w-[220px]">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
@@ -172,6 +210,45 @@ function AdminPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          </div>
+          <div className="space-y-1">
+            <label className="text-xs text-muted-foreground" htmlFor="date-from">
+              Du
+            </label>
+            <Input
+              id="date-from"
+              type="date"
+              className="w-[170px]"
+              value={dateFrom}
+              onChange={(e) => setDateFrom(e.target.value)}
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-xs text-muted-foreground" htmlFor="date-to">
+              Au
+            </label>
+            <Input
+              id="date-to"
+              type="date"
+              className="w-[170px]"
+              value={dateTo}
+              onChange={(e) => setDateTo(e.target.value)}
+            />
+          </div>
+          {(dateFrom || dateTo) && (
+            <Button
+              variant="ghost"
+              onClick={() => {
+                setDateFrom("");
+                setDateTo("");
+              }}
+            >
+              Réinitialiser
+            </Button>
+          )}
+          <p className="ml-auto text-sm text-muted-foreground">
+            {filtered.length} résultat{filtered.length > 1 ? "s" : ""}
+          </p>
         </div>
 
         <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
