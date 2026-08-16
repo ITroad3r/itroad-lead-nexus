@@ -43,11 +43,11 @@ const highlights = [
 function Logo({ className = "h-12" }: { className?: string }) {
   return (
     <img
-      src={logoAsset.url}
+      src={logoWhite}
       alt="IT ROAD GROUP"
-      className={`${className} w-auto brightness-0 invert`}
+      className={`${className} w-auto`}
       width={320}
-      height={160}
+      height={202}
     />
   );
 }
