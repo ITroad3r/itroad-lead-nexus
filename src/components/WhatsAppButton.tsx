@@ -21,15 +21,15 @@ export function WhatsAppButton() {
       href={whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Discuter avec nous sur WhatsApp"
-      className="group fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-full bg-[#25D366] p-2.5 text-sm font-semibold text-navy-deep shadow-[var(--shadow-elevated)] transition-transform hover:scale-[1.03] sm:bottom-5 sm:right-5 sm:py-3 sm:pl-3 sm:pr-4"
+      aria-label="Discutez en direct avec un consultant"
+      className="group fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-full bg-brand p-2.5 text-sm font-semibold text-brand-foreground shadow-[var(--shadow-elevated)] transition-transform hover:scale-[1.03] sm:bottom-5 sm:right-5 sm:py-3 sm:pl-3 sm:pr-4"
       style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/25">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
         <WhatsAppIcon className="relative h-6 w-6" />
       </span>
-      <span className="hidden sm:inline">Discutez avec nous sur WhatsApp</span>
+      <span className="hidden sm:inline">Discutez en direct avec un consultant</span>
     </a>
   );
 }
