@@ -1,5 +1,6 @@
 const VIDEO_ID = "X4f6frV_pNI";
-const PLAYLIST = "PLvCnaSchkbbQ6XdS4m0YrJsXVnygcm_BC";
+// Loop a single video by passing its ID as the playlist parameter.
+const PLAYLIST = VIDEO_ID;
 
 export function VideoEmbed() {
   return (
@@ -7,7 +8,7 @@ export function VideoEmbed() {
       <div className="relative aspect-video bg-navy-deep">
         <iframe
           className="absolute inset-0 h-full w-full"
-          src={`https://www.youtube.com/embed/${VIDEO_ID}?list=${PLAYLIST}&autoplay=1&mute=1&playsinline=1&rel=0`}
+          src={`https://www.youtube.com/embed/${VIDEO_ID}?list=${PLAYLIST}&autoplay=1&mute=1&playsinline=1&rel=0&loop=1`}
           title="IT ROAD GROUP — Offre Nearshore Hybride"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
