@@ -59,9 +59,9 @@ function LandingPage() {
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/10 surface-navy">
-        <div className="section-shell flex h-16 items-center justify-between gap-4">
-          <Logo className="h-10" />
-          <div className="flex items-center gap-2">
+        <div className="section-shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          <Logo className="h-8 sm:h-10" />
+          <div className="flex shrink-0 items-center gap-2">
             <Button variant="onNavy" size="sm" className="hidden sm:inline-flex" asChild>
               <a href={pdfAsset.url} download>
                 <Download className="h-4 w-4" />
@@ -69,7 +69,9 @@ function LandingPage() {
               </a>
             </Button>
             <Button variant="brand" size="sm" asChild>
-              <a href="#contact">Être rappelé sous 24 h</a>
+              <a href="#contact" className="whitespace-nowrap text-xs sm:text-sm">
+                Être rappelé sous 24 h
+              </a>
             </Button>
           </div>
         </div>
