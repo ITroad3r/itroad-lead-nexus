@@ -40,14 +40,14 @@ const highlights = [
   "Démarrage en 4 semaines",
 ];
 
-function Logo({ className = "h-11" }: { className?: string }) {
+function Logo({ className = "h-12" }: { className?: string }) {
   return (
     <img
       src={logoAsset.url}
       alt="IT ROAD GROUP"
-      className={`${className} w-auto rounded-lg bg-white p-1.5 shadow-lg ring-1 ring-white/20`}
-      width={240}
-      height={120}
+      className={`${className} w-auto brightness-0 invert`}
+      width={320}
+      height={160}
     />
   );
 }
