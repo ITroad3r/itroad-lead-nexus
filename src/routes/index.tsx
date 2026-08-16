@@ -108,7 +108,7 @@ function LandingPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button variant="brand" size="lg" asChild>
               <a href="#contact">
-                Être rappel sous 24h
+                Être rappelé sous 24 h
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
