@@ -67,7 +67,7 @@ function LandingPage() {
               </a>
             </Button>
             <Button variant="brand" size="sm" asChild>
-              <a href="#contact">Être rappelé</a>
+              <a href="#contact">Être rappelé sous 24 h</a>
             </Button>
           </div>
         </div>
