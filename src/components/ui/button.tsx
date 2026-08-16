@@ -25,10 +25,10 @@ const buttonVariants = cva(
           "border border-white/25 bg-white/10 text-navy-foreground hover:bg-white/20 backdrop-blur",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-11 rounded-lg px-8 text-base",
-        xl: "h-14 rounded-xl px-9 text-base",
+        default: "min-h-9 px-4 py-2",
+        sm: "min-h-8 rounded-md px-3 py-1.5 text-xs",
+        lg: "min-h-11 rounded-lg px-6 py-2.5 text-base sm:px-8",
+        xl: "min-h-14 rounded-xl px-5 py-3 text-sm sm:px-9 sm:text-base",
         icon: "h-9 w-9",
       },
 
