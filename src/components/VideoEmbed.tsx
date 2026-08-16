@@ -27,15 +27,21 @@ export function VideoEmbed() {
             aria-label="Lire la vidéo"
           >
             <img
-              src={`https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`}
+              src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (!img.src.includes("sddefault")) {
+                  img.src = `https://i.ytimg.com/vi/${VIDEO_ID}/sddefault.jpg`;
+                }
+              }}
               alt="Miniature vidéo IT ROAD GROUP"
               className="absolute inset-0 h-full w-full object-cover"
-              loading="lazy"
+              width={1280}
+              height={720}
             />
             <div className="absolute inset-0 bg-navy-deep/30 transition-colors group-hover:bg-navy-deep/20" />
-            <span className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-brand/90 text-white shadow-lg transition-transform group-hover:scale-110 group-active:scale-95 sm:h-20 sm:w-20">
-              <PlayCircle className="h-8 w-8 fill-current sm:h-10 sm:w-10" />
-            </span>
+            <Play className="relative z-10 h-16 w-16 fill-white text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-transform group-hover:scale-110 group-active:scale-95 sm:h-24 sm:w-24" />
+
           </button>
         )}
       </div>
