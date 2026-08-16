@@ -27,11 +27,43 @@ export const Route = createFileRoute("/")({
           "Pilotage stratégique en France, excellence technique au Maroc. Réduisez vos coûts IT sans compromis sur la qualité.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://itroad-lead-nexus.lovable.app/" },
+      {
+        property: "og:image",
+        content: "https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg",
+      },
+      {
+        name: "twitter:image",
+        content: "https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://itroad-lead-nexus.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          name: "Le Nearshore Hybride par IT ROAD GROUP",
+          description:
+            "Découvrez le modèle Nearshore Hybride d'IT ROAD GROUP : pilotage en France, centre de service au Maroc, démarrage en 4 semaines.",
+          thumbnailUrl: ["https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg"],
+          uploadDate: "2025-01-15T09:00:00+01:00",
+          embedUrl: "https://www.youtube.com/embed/X4f6frV_pNI",
+          contentUrl: "https://www.youtube.com/watch?v=X4f6frV_pNI",
+          publisher: {
+            "@type": "Organization",
+            name: "IT ROAD GROUP",
+            url: "https://itroadgroup.com",
+          },
+        }),
+      },
     ],
   }),
   component: LandingPage,
 });
+
 
 const highlights = [
   "Pilotage en France, équipes techniques au Maroc",
