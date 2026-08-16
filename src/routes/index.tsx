@@ -192,7 +192,7 @@ function LandingPage() {
 
       <footer className="surface-navy border-t border-white/10 py-10 pb-24 sm:pb-10">
         <div className="section-shell flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-between sm:text-left">
-          <Logo className="h-14" />
+          <Logo className="h-16" />
           <p className="text-sm text-white/70">
             IT ROAD GROUP — Votre partenaire de confiance pour l'excellence hybride.
           </p>
