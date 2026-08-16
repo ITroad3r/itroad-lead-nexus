@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "IT ROAD GROUP : équipes IT nearshore hybrides, pilotage France et centre de service Maroc. Consultation gratuite sous 24h.",
+          "IT ROAD GROUP : équipes IT nearshore hybrides, pilotage France et centre de service Maroc. Réserver une consultation gratuite.",
       },
       { name: "author", content: "IT ROAD GROUP" },
       { property: "og:title", content: "Nearshore Hybride Maroc-France | IT ROAD GROUP" },

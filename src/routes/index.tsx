@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Renforcez vos équipes IT en 4 semaines avec le modèle Nearshore Hybride d'IT ROAD GROUP : pilotage en France, centre de service au Maroc. Devis et consultation sous 24h.",
+          "Renforcez vos équipes IT en 4 semaines avec le modèle Nearshore Hybride d'IT ROAD GROUP : pilotage en France, centre de service au Maroc. Réserver une consultation gratuite.",
       },
       { property: "og:title", content: "Nearshore Hybride Maroc-France | IT ROAD GROUP" },
       {
@@ -70,7 +70,7 @@ function LandingPage() {
             </Button>
             <Button variant="brand" size="sm" asChild>
               <a href="#contact" className="whitespace-nowrap text-xs sm:text-sm">
-                Être rappelé sous 24 h
+                Réserver une consultation gratuite
               </a>
             </Button>
           </div>
@@ -100,7 +100,7 @@ function LandingPage() {
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Button variant="brand" size="lg" className="w-full sm:w-auto" asChild>
               <a href="#contact">
-                Être rappelé sous 24 h
+                Réserver une consultation gratuite
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
@@ -180,8 +180,8 @@ function LandingPage() {
               Lancez votre équipe hybride dès aujourd'hui
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/80">
-              Laissez vos coordonnées. Un consultant vous contacte sous 24h pour cadrer votre
-              besoin — gratuitement et sans engagement.
+              Réservez votre consultation gratuite. Un consultant vous contactera pour cadrer
+              votre besoin — sans engagement.
             </p>
           </div>
           <div className="mx-auto mt-8 max-w-2xl">

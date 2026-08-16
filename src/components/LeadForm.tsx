@@ -96,9 +96,9 @@ export function LeadForm({ variant = "light" }: { variant?: "light" | "dark" }) 
           : "border-border bg-card"
       }`}
     >
-      <h3 className="text-xl font-semibold sm:text-2xl">Être rappelé sous 24 h</h3>
+      <h3 className="text-xl font-semibold sm:text-2xl">Réserver une consultation gratuite</h3>
       <p className="mt-2 text-sm text-muted-foreground">
-        Remplissez vos coordonnées. Un consultant vous appelle gratuitement.
+        Remplissez vos coordonnées. Un consultant vous contactera gratuitement.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -172,7 +172,7 @@ export function LeadForm({ variant = "light" }: { variant?: "light" | "dark" }) 
         ) : (
           <Send className="h-4 w-4" />
         )}
-        Être rappelé sous 24 h
+        Réserver une consultation gratuite
       </Button>
 
       <p className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
