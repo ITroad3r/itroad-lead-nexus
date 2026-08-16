@@ -1,9 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Volume2 } from "lucide-react";
 
 const VIDEO_ID = "X4f6frV_pNI";
 
 interface YTPlayer {
   setVolume(volume: number): void;
+  isMuted(): boolean;
   unMute(): void;
   mute(): void;
   playVideo(): void;
@@ -32,10 +34,44 @@ declare global {
 
 export function VideoEmbed() {
   const playerRef = useRef<YTPlayer | null>(null);
+  const [muted, setMuted] = useState(true);
   const containerId = "yt-player";
+
+  const tryUnmute = useCallback(() => {
+    const player = playerRef.current;
+    if (!player) return false;
+    try {
+      player.setVolume(25);
+      player.unMute();
+      player.playVideo();
+      const stillMuted = player.isMuted?.() ?? false;
+      setMuted(stillMuted);
+      return !stillMuted;
+    } catch {
+      return false;
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    let gestureCleanup: (() => void) | undefined;
+
+    const attachGestureUnmute = () => {
+      const handler = () => {
+        if (tryUnmute()) detach();
+      };
+      const events: (keyof DocumentEventMap)[] = [
+        "pointerdown",
+        "touchstart",
+        "keydown",
+        "scroll",
+        "mousemove",
+      ];
+      const detach = () => events.forEach((e) => document.removeEventListener(e, handler));
+      events.forEach((e) => document.addEventListener(e, handler, { passive: true }));
+      gestureCleanup = detach;
+    };
 
     const loadPlayer = () => {
       if (!window.YT) return;
@@ -55,14 +91,11 @@ export function VideoEmbed() {
           onReady: (event) => {
             const player = event.target;
             player.setVolume(25);
-            // Try to unmute after autoplay has started. Browsers may keep it muted until user interaction.
+            player.playVideo();
+            // Attempt to enable sound right away; browsers may refuse without a gesture.
             setTimeout(() => {
-              try {
-                player.unMute();
-              } catch {
-                // Browser autoplay policy blocked unmuting; video continues muted.
-              }
-            }, 800);
+              if (!tryUnmute()) attachGestureUnmute();
+            }, 600);
           },
         },
       });
@@ -83,6 +116,7 @@ export function VideoEmbed() {
     }
 
     return () => {
+      gestureCleanup?.();
       try {
         playerRef.current?.destroy();
       } catch {
@@ -90,13 +124,24 @@ export function VideoEmbed() {
       }
       playerRef.current = null;
     };
-  }, []);
+  }, [tryUnmute]);
 
   return (
     <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-white/15 shadow-[var(--shadow-elevated)]">
       <div className="relative aspect-video bg-navy-deep">
         <div id={containerId} className="absolute inset-0 h-full w-full" />
+        {muted && (
+          <button
+            type="button"
+            onClick={tryUnmute}
+            className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-brand-foreground shadow-lg transition hover:opacity-90"
+          >
+            <Volume2 className="h-4 w-4" />
+            Activer le son
+          </button>
+        )}
       </div>
     </div>
   );
 }
+
