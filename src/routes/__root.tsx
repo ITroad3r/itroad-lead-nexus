@@ -77,21 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nearshore Hybride Maroc-France | IT ROAD GROUP" },
-      {
-        name: "description",
-        content:
-          "IT ROAD GROUP : équipes IT nearshore hybrides, pilotage France et centre de service Maroc. Réserver une consultation gratuite.",
-      },
       { name: "author", content: "IT ROAD GROUP" },
-      { property: "og:title", content: "Nearshore Hybride Maroc-France | IT ROAD GROUP" },
-      {
-        property: "og:description",
-        content:
-          "Renforcez vos équipes IT en 4 semaines avec le modèle Nearshore Hybride d'IT ROAD GROUP.",
-      },
+      { property: "og:site_name", content: "IT ROAD GROUP" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+
     ],
     links: [
       {
