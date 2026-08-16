@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { CheckCircle2, Loader2, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Loader2, ShieldCheck, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,7 +23,7 @@ const leadSchema = z.object({
 
 type FieldErrors = Partial<Record<keyof z.infer<typeof leadSchema>, string>>;
 
-export function LeadForm() {
+export function LeadForm({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [values, setValues] = useState({
     full_name: "",
     email: "",
@@ -63,9 +63,17 @@ export function LeadForm() {
     setStatus(error ? "error" : "success");
   }
 
+  const isDark = variant === "dark";
+
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-brand/40 bg-card p-8 text-center shadow-[var(--shadow-elevated)]">
+      <div
+        className={`rounded-2xl border p-8 text-center shadow-[var(--shadow-elevated)] ${
+          isDark
+            ? "border-white/20 bg-white/10 backdrop-blur"
+            : "border-brand/40 bg-card"
+        }`}
+      >
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand/15">
           <CheckCircle2 className="h-7 w-7 text-brand" />
         </div>
@@ -73,9 +81,6 @@ export function LeadForm() {
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           Merci ! Un consultant IT ROAD GROUP vous contactera dans les <strong>24 heures</strong>{" "}
           pour échanger sur votre besoin et vous proposer un dispositif Nearshore Hybride adapté.
-        </p>
-        <p className="mt-4 text-xs text-muted-foreground">
-          Besoin d'une réponse immédiate ? Écrivez-nous sur WhatsApp via le bouton en bas à droite.
         </p>
       </div>
     );
@@ -85,18 +90,22 @@ export function LeadForm() {
     <form
       onSubmit={onSubmit}
       noValidate
-      className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-elevated)] sm:p-8"
+      className={`rounded-2xl border p-6 shadow-[var(--shadow-elevated)] sm:p-8 ${
+        isDark
+          ? "border-white/15 bg-white/10 backdrop-blur"
+          : "border-border bg-card"
+      }`}
     >
-      <h3 className="text-xl font-semibold sm:text-2xl">Parlons de votre besoin IT</h3>
+      <h3 className="text-xl font-semibold sm:text-2xl">Être rappel sous 24h</h3>
       <p className="mt-2 text-sm text-muted-foreground">
-        Remplissez ce formulaire en 30 secondes. Réponse d'un consultant sous 24h — sans engagement.
+        Remplissez vos coordonnées. Un consultant vous appelle gratuitement.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <Field
           id="full_name"
           label="Nom et prénom *"
-          placeholder="Jean Dupont"
+          placeholder="Nom et prénom"
           value={values.full_name}
           onChange={update("full_name")}
           error={errors.full_name}
@@ -105,7 +114,7 @@ export function LeadForm() {
         <Field
           id="company"
           label="Société *"
-          placeholder="Nom de votre entreprise"
+          placeholder="Société"
           value={values.company}
           onChange={update("company")}
           error={errors.company}
@@ -115,7 +124,7 @@ export function LeadForm() {
           id="email"
           label="Email professionnel *"
           type="email"
-          placeholder="jean.dupont@societe.com"
+          placeholder="Email professionnel"
           value={values.email}
           onChange={update("email")}
           error={errors.email}
@@ -125,7 +134,7 @@ export function LeadForm() {
           id="phone"
           label="Téléphone *"
           type="tel"
-          placeholder="+33 6 12 34 56 78"
+          placeholder="Téléphone"
           value={values.phone}
           onChange={update("phone")}
           error={errors.phone}
@@ -134,12 +143,12 @@ export function LeadForm() {
       </div>
 
       <div className="mt-4 space-y-2">
-        <Label htmlFor="message">Votre besoin (optionnel)</Label>
+        <Label htmlFor="message">Décrivez votre besoin (optionnel)</Label>
         <Textarea
           id="message"
           rows={3}
           maxLength={2000}
-          placeholder="Ex : 3 développeurs full stack + 1 DevOps pour un projet de 12 mois."
+          placeholder="Décrivez votre besoin"
           value={values.message}
           onChange={(e) => update("message")(e.target.value)}
         />
@@ -158,8 +167,12 @@ export function LeadForm() {
         className="mt-6 w-full"
         disabled={status === "loading"}
       >
-        {status === "loading" && <Loader2 className="h-4 w-4 animate-spin" />}
-        Être rappelé sous 24h
+        {status === "loading" ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <Send className="h-4 w-4" />
+        )}
+        Être rappel sous 24h
       </Button>
 
       <p className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
