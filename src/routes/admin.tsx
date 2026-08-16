@@ -78,38 +78,74 @@ function AdminPage() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return leads;
-    return leads.filter((l) =>
-      [l.full_name, l.email, l.phone, l.company, l.message ?? ""]
+    const from = dateFrom ? new Date(`${dateFrom}T00:00:00`) : null;
+    const to = dateTo ? new Date(`${dateTo}T23:59:59.999`) : null;
+
+    return leads.filter((l) => {
+      const created = new Date(l.created_at);
+      if (from && created < from) return false;
+      if (to && created > to) return false;
+      if (!q) return true;
+      return [l.full_name, l.email, l.phone, l.company, l.message ?? ""]
         .join(" ")
         .toLowerCase()
-        .includes(q),
-    );
-  }, [leads, query]);
+        .includes(q);
+    });
+  }, [leads, query, dateFrom, dateTo]);
 
-  function exportCsv() {
-    const headers = ["Date", "Nom", "Société", "Email", "Téléphone", "Besoin"];
-    const escape = (v: string) => `"${v.replace(/"/g, '""')}"`;
-    const rows = filtered.map((l) =>
+  async function exportExcel() {
+    const writeXlsxFile = (await import("write-excel-file")).default;
+
+    const headerStyle = {
+      fontWeight: "bold" as const,
+      backgroundColor: "#12263F",
+      color: "#FFFFFF",
+    };
+
+    const data = [
       [
-        new Date(l.created_at).toLocaleString("fr-FR"),
-        l.full_name,
-        l.company,
-        l.email,
-        l.phone,
-        l.message ?? "",
-      ]
-        .map(escape)
-        .join(";"),
-    );
-    const csv = "\uFEFF" + [headers.map(escape).join(";"), ...rows].join("\n");
-    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `leads-itroad-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+        { value: "Date de réception", ...headerStyle },
+        { value: "Heure", ...headerStyle },
+        { value: "Nom et prénom", ...headerStyle },
+        { value: "Société", ...headerStyle },
+        { value: "Email", ...headerStyle },
+        { value: "Téléphone", ...headerStyle },
+        { value: "Besoin exprimé", ...headerStyle },
+      ],
+      ...filtered.map((l) => {
+        const d = new Date(l.created_at);
+        return [
+          { type: String, value: d.toLocaleDateString("fr-FR") },
+          { type: String, value: d.toLocaleTimeString("fr-FR") },
+          { type: String, value: l.full_name },
+          { type: String, value: l.company },
+          { type: String, value: l.email },
+          { type: String, value: l.phone },
+          { type: String, value: l.message ?? "" },
+        ];
+      }),
+    ];
+
+    const suffix =
+      dateFrom || dateTo
+        ? `${dateFrom || "debut"}_${dateTo || "aujourdhui"}`
+        : new Date().toISOString().slice(0, 10);
+
+    await writeXlsxFile(data as never, {
+      columns: [
+        { width: 16 },
+        { width: 12 },
+        { width: 24 },
+        { width: 24 },
+        { width: 30 },
+        { width: 18 },
+        { width: 60 },
+      ],
+      sheet: "Leads",
+      fileName: `leads-itroad-${suffix}.xlsx`,
+    });
   }
+
 
   async function signOut() {
     await supabase.auth.signOut();
