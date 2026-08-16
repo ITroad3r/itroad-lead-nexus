@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Download, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, Download, Phone, PlayCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LeadForm } from "@/components/LeadForm";
