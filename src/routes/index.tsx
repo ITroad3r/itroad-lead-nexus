@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Download, Phone, PlayCircle } from "lucide-react";
+import { ArrowRight, BadgeCheck, Phone, PlayCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LeadForm } from "@/components/LeadForm";
@@ -7,7 +7,7 @@ import { WhatsAppButton, whatsappHref } from "@/components/WhatsAppButton";
 import { ClientReferences } from "@/components/ClientReferences";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import logoWhite from "@/assets/itroad-logo-white.png";
-import pdfAsset from "@/assets/offre-nearshore.pdf.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -94,12 +94,6 @@ function LandingPage() {
         <div className="section-shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
           <Logo className="h-12 sm:h-14" />
           <div className="flex shrink-0 items-center gap-2">
-            <Button variant="onNavy" size="sm" className="hidden sm:inline-flex" asChild>
-              <a href={pdfAsset.url} download>
-                <Download className="h-4 w-4" />
-                Brochure PDF
-              </a>
-            </Button>
             <Button variant="brand" size="sm" className="max-w-[52vw] sm:max-w-none" asChild>
               <a href="#contact" className="text-xs leading-tight sm:text-sm">
                 <span className="sm:hidden">Consultation gratuite</span>
@@ -135,12 +129,6 @@ function LandingPage() {
               <a href="#contact">
                 Réserver une consultation gratuite
                 <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button variant="onNavy" size="lg" className="w-full sm:w-auto" asChild>
-              <a href={pdfAsset.url} download>
-                <Download className="h-4 w-4" />
-                <span className="truncate">Télécharger la brochure PDF</span>
               </a>
             </Button>
           </div>
@@ -188,12 +176,6 @@ function LandingPage() {
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                   <Phone className="h-4 w-4" />
                   Discuter sur WhatsApp
-                </a>
-              </Button>
-              <Button variant="outlineBrand" size="lg" className="w-full sm:w-auto" asChild>
-                <a href={pdfAsset.url} download>
-                  <Download className="h-4 w-4" />
-                  Brochure PDF
                 </a>
               </Button>
             </div>
