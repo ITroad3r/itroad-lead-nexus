@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Volume2 } from "lucide-react";
 
-const VIDEO_ID = "X4f6frV_pNI";
+const VIDEO_ID = "4fhHxF0XjTc";
 
 interface YTPlayer {
   setVolume(volume: number): void;
