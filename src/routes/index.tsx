@@ -30,11 +30,11 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://itroad-lead-nexus.lovable.app/" },
       {
         property: "og:image",
-        content: "https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg",
+        content: "https://i.ytimg.com/vi/4fhHxF0XjTc/maxresdefault.jpg",
       },
       {
         name: "twitter:image",
-        content: "https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg",
+        content: "https://i.ytimg.com/vi/4fhHxF0XjTc/maxresdefault.jpg",
       },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -48,10 +48,10 @@ export const Route = createFileRoute("/")({
           name: "Le Nearshore Hybride par IT ROAD GROUP",
           description:
             "Découvrez le modèle Nearshore Hybride d'IT ROAD GROUP : pilotage en France, centre de service au Maroc, démarrage en 4 semaines.",
-          thumbnailUrl: ["https://i.ytimg.com/vi/X4f6frV_pNI/maxresdefault.jpg"],
+          thumbnailUrl: ["https://i.ytimg.com/vi/4fhHxF0XjTc/maxresdefault.jpg"],
           uploadDate: "2025-01-15T09:00:00+01:00",
-          embedUrl: "https://www.youtube.com/embed/X4f6frV_pNI",
-          contentUrl: "https://www.youtube.com/watch?v=X4f6frV_pNI",
+          embedUrl: "https://www.youtube.com/embed/4fhHxF0XjTc",
+          contentUrl: "https://www.youtube.com/watch?v=4fhHxF0XjTc",
           publisher: {
             "@type": "Organization",
             name: "IT ROAD GROUP",
