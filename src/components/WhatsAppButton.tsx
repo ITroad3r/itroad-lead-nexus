@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "212702074045";
+const WHATSAPP_NUMBER = "212663618242";
 const WHATSAPP_MESSAGE =
   "Bonjour IT ROAD GROUP, je souhaite en savoir plus sur votre solution Nearshore Hybride.";
 
